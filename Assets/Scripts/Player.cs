@@ -49,14 +49,14 @@ public class Player : MonoBehaviour
         if (collider.CompareTag("BlueGem"))
         {
             Destroy(collider.gameObject);
-            Vector2 spot = new Vector2(-5, -1.5F);
+            Vector2 spot = new Vector2(1.3F, -2F);
             Instantiate(RedGemPrefab, spot, Quaternion.identity);
         }
 
         if (collider.CompareTag("RedGem"))
         {
             Destroy(collider.gameObject);
-            Vector2 second_spot = new Vector2(-17.61F, -1.36F);
+            Vector2 second_spot = new Vector2(-12.77F, -2.24F);
             Instantiate(BlueGemPrefab, second_spot, Quaternion.identity);
             canJump = true;
         }

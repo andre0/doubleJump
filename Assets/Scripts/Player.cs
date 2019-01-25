@@ -21,17 +21,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //playerRigidBody = GetComponent<Rigidbody2D>();
-        //playerCollider = GetComponent<Collider2D>();
-        //float horizontal = Input.GetAxis("Horizontal");
-        //float vertical = Input.GetAxis("Vertical");
-        
         Move();
 
         if (Input.GetKeyDown(KeyCode.Space) && canJump)
         {
-            //playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, jump);
-            //canJump = false;
             Jump();
         }
 
@@ -56,7 +49,7 @@ public class Player : MonoBehaviour
         if (collider.CompareTag("BlueGem"))
         {
             Destroy(collider.gameObject);
-            Vector2 spot = new Vector2(-2, -1.5F);
+            Vector2 spot = new Vector2(-5, -1.5F);
             Instantiate(RedGemPrefab, spot, Quaternion.identity);
         }
 
@@ -65,6 +58,7 @@ public class Player : MonoBehaviour
             Destroy(collider.gameObject);
             Vector2 second_spot = new Vector2(-17.61F, -1.36F);
             Instantiate(BlueGemPrefab, second_spot, Quaternion.identity);
+            canJump = true;
         }
     }
 
@@ -72,15 +66,15 @@ public class Player : MonoBehaviour
     {
         if (collision.collider.CompareTag("Ground"))
         {
-            Vector2 feetVector = new Vector2(this.transform.position.x, playerCollider.bounds.min.y);
+            Debug.Log("test1");
+            Vector2 feetVector = new Vector2(transform.position.x, playerCollider.bounds.min.y);
             RaycastHit2D hit = Physics2D.Raycast(feetVector, Vector2.down, 0.1f);
        
             if (hit && hit.collider.CompareTag("Ground"))
             {
+                Debug.Log("test2");
                 canJump = true;
-            }
-
-            
+            }        
         }
     }
 
@@ -88,7 +82,8 @@ public class Player : MonoBehaviour
     {
         if (collision.collider.CompareTag("Ground"))
         {
-            //canJump = false;
+            canJump = false;
+            Debug.Log("test3");
         }
     }
 
